@@ -8,6 +8,10 @@ import { FaTrophy, FaStar, FaCheckCircle, FaHeadphones } from "react-icons/fa";
 import { HiSpeakerWave } from "react-icons/hi2";
 import { FiBox } from "react-icons/fi";
 import { RiDoubleQuotesR } from "react-icons/ri";
+import { useState } from "react";
+import grey from "../assets/grey.avif";
+import neon from "../assets/neon.avif";
+import blue from "../assets/blue.avif";
 
 
 
@@ -15,7 +19,13 @@ import { RiDoubleQuotesR } from "react-icons/ri";
 
 
 function Home(){
+
+  const [color, setColor] = useState("Graphite Black");
+  const [image, setImage] = useState(headphones);
+  const [selected, setSelected] = useState("black");
     return(
+
+
     
     <>
 
@@ -181,30 +191,81 @@ function Home(){
 </section>
 
              
-              {/* design and style  */}
-          <section className="h-full p-20 ">
-            <div>
-              <h1 className="ml-15 text-2xl  font-semibold bg-gradient-to-r
-                   from-green-300 via-blue-500 to-blue-700 
-                   bg-clip-text text-transparent">Design & Built.</h1>
-              
-           <br />
+    <section className="h-full p-20 ">
 
-              <p className="ml-15 text-6xl font-bold">Choose your Style.</p> <br /> <br />
-              <img className="h-[430px] ml-115" src={headphones} alt="" />
-              <h1 className="text-center font-semibold"> Graphite Black </h1>
-            </div>
+      {/* HEADING */}
+      <h1 className="text-2xl ml-20 font-semibold bg-gradient-to-r
+                   from-green-300 via-green-500 to-blue-500 
+                   bg-clip-text text-transparent">
+        Design & Built.
+      </h1>
 
+      <p className="text-5xl text-6xl font-bold mt-4 ml-20">
+        Choose your Style.
+      </p>
 
-            <div className="flex gap-2 justify-center mt-8 ">
-              <button className="rounded-full  p-3 bg-black hover:border-black"></button>
-              <button className="rounded-full  p-3 bg-gray-200 "></button>
-              <button className="rounded-full  p-3 bg-green-300 "></button>
-              <button className="rounded-full  p-3 bg-blue-300 "></button>
-            </div>
+      {/* IMAGE */}
+      <img
+        className="h-[400px] md:h-[430px] mx-auto mt-10 transition duration-300"
+        src={image}
+        alt="headphone"
+      />
 
-          </section>
+      {/* COLOR NAME */}
+      <h1 className="font-semibold mt-4 text-lg text-center">
+        {color}
+      </h1>
 
+      {/* COLOR BUTTONS */}
+      <div className="flex gap-4 justify-center mt-6">
+
+        {/* BLACK */}
+        <button
+          onClick={() => {
+            setColor("Graphite Black");
+            setImage(headphones);
+            setSelected("black");
+          }}
+          className={`w-7 h-7 rounded-full bg-black 
+          ${selected === "black" ? "ring-2 ring-offset-2 ring-black" : ""}`}
+        ></button>
+
+        {/* GREY */}
+        <button
+          onClick={() => {
+            setColor("Silver Grey");
+            setImage(grey);
+            setSelected("grey");
+          }}
+          className={`w-7 h-7 rounded-full bg-gray-300 
+          ${selected === "grey" ? "ring-2 ring-offset-2 ring-gray-400" : ""}`}
+        ></button>
+
+        {/* NEON */}
+        <button
+          onClick={() => {
+            setColor("Neon Green");
+            setImage(neon);
+            setSelected("neon");
+          }}
+          className={`w-7 h-7 rounded-full bg-green-300 
+          ${selected === "neon" ? "ring-2 ring-offset-2 ring-green-300" : ""}`}
+        ></button>
+
+        {/* BLUE */}
+        <button
+          onClick={() => {
+            setColor("Ocean Blue");
+            setImage(blue);
+            setSelected("blue");
+          }}
+          className={`w-7 h-7 rounded-full bg-blue-400 
+          ${selected === "blue" ? "ring-2 ring-offset-2 ring-blue-400" : ""}`}
+        ></button>
+
+      </div>
+
+    </section>
 
                    
                    
@@ -589,5 +650,8 @@ function Home(){
     
 )
 }
+
+
+
 
 export default Home

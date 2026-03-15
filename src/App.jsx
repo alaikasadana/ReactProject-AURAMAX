@@ -4,6 +4,8 @@ import Home from "./components/Home"
 import Signup from "./components/Signup"
 import Login from "./components/Login"
 import Product from "./components/Product"
+import Cart from "./components/Cart"
+import Account from "./components/Account"
 
 
 
@@ -22,6 +24,8 @@ function App() {
      <Route path="/signup" element={<Signup />} />
      <Route path="/login" element={<Login />} />
      <Route path="product/" element={<Product/>} />
+      <Route path="/cart" element={<Cart/>} />
+        <Route path="/account" element={<Account />} />
    
      
     </Routes>
