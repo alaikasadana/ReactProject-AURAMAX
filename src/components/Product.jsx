@@ -10,6 +10,10 @@ import img3 from "../assets/img3.webp";
 import img4 from "../assets/img4.webp";
 
 function Product() {
+
+
+
+  
   const [qty, setQty] = useState(1);
   const [current, setCurrent] = useState(0);
   const [cart, setCart] = useState([]);
@@ -126,7 +130,7 @@ function Product() {
 
       {/* 🔥 TOP STRIP */}
       <div className="bg-white py-6 ">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center mt-10">
 
           <div className="flex flex-col items-center gap-2">
             <MdVerified size={22} />
@@ -151,8 +155,8 @@ function Product() {
         </div>
       </div>
              
-    <section className="bg-white py-16 px-4">
-      <div className="w-auto mx-auto">
+    <section className="bg-white py-16 px-4 ">
+      <div className="w-auto mx-auto mt-10">
        
         <h2 className="text-center text-4xl md:text-5xl font-medium text-zinc-900 mb-12 tracking-tight">
           Quick Product <span className="font-bold">Highlights</span>
