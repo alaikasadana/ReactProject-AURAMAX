@@ -4,7 +4,7 @@ import Home from "./components/Home"
 import Signup from "./components/Signup"
 import Login from "./components/Login"
 import Product from "./components/Product"
-import AddToCart from "./components/AddToCart"
+
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
      <Route path="/signup" element={<Signup />} />
      <Route path="/login" element={<Login />} />
      <Route path="product/" element={<Product/>} />
-     <Route path="addtocart/" element={<AddToCart/>} />
+   
      
     </Routes>
     
