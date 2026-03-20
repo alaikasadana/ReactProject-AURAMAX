@@ -4,20 +4,16 @@
       "id": "321b",
       "name": "alaika sadana",
       "email": "alaikasadana8817@gmail.com",
-      "password": "alaika"
+      "password": "alaika123"
     }
   ],
   "cart": [
     {
-      "id": "46dc",
-      "qty": null
-    },
-    {
-      "id": "99d4",
+      "id": "95b3",
       "name": "WH-1000XM6 Headphones",
       "price": 49990,
       "image": "/src/assets/img1.webp",
-      "qty": 2
+      "qty": 1
     }
   ]
 }

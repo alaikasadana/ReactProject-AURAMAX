@@ -4,6 +4,13 @@ import aurafooter from "../assets/aurafooter.avif"
 
 
 function Layout(){
+
+  const scrollToSection = (id) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
     return(
     
     <>
@@ -18,12 +25,12 @@ function Layout(){
   </div>
 
 
-  <ul className="flex gap-10 flex-1 justify-center">
-    <li className="hover:underline">Features</li>
-    <li className="hover:underline">Color</li>
-    <li className="hover:underline">Pricing</li>
-    <li className="hover:underline">Contact</li>
-  </ul>
+<ul className="flex gap-10 flex-1 justify-center cursor-pointer">
+  <li onClick={() => scrollToSection("features")} className="hover:underline">Features</li>
+  <li onClick={() => scrollToSection("colors")} className="hover:underline">Color</li>
+  <li onClick={() => scrollToSection("pricing")} className="hover:underline">Pricing</li>
+  <li onClick={() => scrollToSection("contact")} className="hover:underline">Contact</li>
+</ul>
 
  <Link to="/signup">
   <button className="rounded-3xl bg-black px-6 py-2 text-white hover:bg-gradient-to-r hover:from-green-400 hover:to-blue-500   hover:text-black">

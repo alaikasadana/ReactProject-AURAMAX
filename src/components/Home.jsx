@@ -96,7 +96,7 @@ function Home(){
 
     {/* #features  */}
 
-    <section>
+    <section  id="features">
         <h1 className="text-2xl ml-40 font-semibold bg-gradient-to-r
                    from-green-300 via-blue-500 to-blue-700 
                    bg-clip-text text-transparent">Features</h1> <br />
@@ -191,7 +191,7 @@ function Home(){
 </section>
 
              
-    <section className="h-full p-20 ">
+ <section id="colors" className="h-full p-20">
 
       {/* HEADING */}
       <h1 className="text-2xl ml-20 font-semibold bg-gradient-to-r
