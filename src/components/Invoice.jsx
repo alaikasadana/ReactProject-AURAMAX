@@ -116,7 +116,7 @@ function Invoice() {
 
         {/* 🔥 FOOTER */}
         <div className="mt-10 text-center text-gray-500 text-sm border-t pt-4">
-          Thank you for shopping with Auramax ❤️
+          Thank you for shopping with Auramax 
         </div>
 
       </div>
