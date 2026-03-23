@@ -28,8 +28,10 @@ function Layout(){
 <ul className="flex gap-10 flex-1 justify-center cursor-pointer">
   <li onClick={() => scrollToSection("features")} className="hover:underline">Features</li>
   <li onClick={() => scrollToSection("colors")} className="hover:underline">Color</li>
-  <li onClick={() => scrollToSection("pricing")} className="hover:underline">Pricing</li>
-  <li onClick={() => scrollToSection("contact")} className="hover:underline">Contact</li>
+  {/* <li onClick={() => scrollToSection("pricing")} className="hover:underline">Pricing</li> */}
+   <Link to="/contact">
+  <li  className="hover:underline">Contact</li>
+  </Link>
 </ul>
 
  <Link to="/signup">

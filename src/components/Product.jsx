@@ -1,8 +1,9 @@
+
+
 import { useState, useEffect } from "react";
-import { FiShoppingCart, FiUser, FiTruck } from "react-icons/fi";
+import { FiShoppingCart, FiUser, FiTruck, FiRefreshCw } from "react-icons/fi";
 import { MdVerified } from "react-icons/md";
 import { BsReceipt } from "react-icons/bs";
-import { FiRefreshCw } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -12,7 +13,6 @@ import img3 from "../assets/img3.webp";
 import img4 from "../assets/img4.webp";
 
 function Product() {
-
   const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
@@ -21,11 +21,15 @@ function Product() {
 
   const images = [img1, img2, img3, img4];
 
-  // 🔥 FETCH CART (for badge count)
+  // 🔥 FETCH CART
   useEffect(() => {
     const fetchCart = async () => {
-      const res = await axios.get("http://localhost:3000/cart");
-      setCart(res.data);
+      try {
+        const res = await axios.get("http://localhost:3000/cart");
+        setCart(res.data);
+      } catch (err) {
+        console.error("Cart fetch error:", err);
+      }
     };
     fetchCart();
   }, []);
@@ -39,32 +43,33 @@ function Product() {
     setCurrent(current === images.length - 1 ? 0 : current + 1);
   };
 
-  // 🔥 ADD TO CART (SMART VERSION)
+  // 🔥 ADD TO CART
   const addToCart = async () => {
-    const res = await axios.get("http://localhost:3000/cart");
+    try {
+      const res = await axios.get("http://localhost:3000/cart");
 
-    const existing = res.data.find(
-      (item) => item.name === "WH-1000XM6 Headphones"
-    );
+      const existing = res.data.find(
+        (item) => item.name === "WH-1000XM6 Headphones"
+      );
 
-    if (existing) {
-      // UPDATE QTY
-      await axios.patch(`http://localhost:3000/cart/${existing.id}`, {
-        qty: existing.qty + qty,
-      });
-    } else {
-      // ADD NEW
-      await axios.post("http://localhost:3000/cart", {
-        name: "WH-1000XM6 Headphones",
-        price: 49990,
-        image: images[current],
-        qty: qty,
-      });
+      if (existing) {
+        await axios.patch(`http://localhost:3000/cart/${existing.id}`, {
+          qty: existing.qty + qty,
+        });
+      } else {
+        await axios.post("http://localhost:3000/cart", {
+          name: "WH-1000XM6 Headphones",
+          price: 49990,
+          image: images[current],
+          qty: qty,
+        });
+      }
+
+      const updated = await axios.get("http://localhost:3000/cart");
+      setCart(updated.data);
+    } catch (err) {
+      console.error("Add to cart error:", err);
     }
-
-    // REFRESH CART COUNT
-    const updated = await axios.get("http://localhost:3000/cart");
-    setCart(updated.data);
   };
 
   return (
@@ -73,13 +78,25 @@ function Product() {
       {/* 🔥 NAVBAR */}
       <div className="bg-black text-white px-6 py-4 flex justify-between items-center shadow-md">
 
-        <h1
-          className="text-xl font-semibold cursor-pointer"
-          onClick={() => navigate("/")}
-        >
-          Auramax
-        </h1>
+        {/* LEFT SIDE */}
+        <div className="flex items-center gap-6">
+          <h1
+            className="text-xl font-semibold cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            Auramax
+          </h1>
 
+          {/* ✅ HOME BUTTON */}
+          <button
+            className="hover:underline"
+            onClick={() => navigate("/")}
+          >
+            Home
+          </button>
+        </div>
+
+        {/* RIGHT SIDE */}
         <div className="flex items-center gap-6 text-xl">
 
           {/* CART */}
@@ -88,7 +105,6 @@ function Product() {
             onClick={() => navigate("/cart")}
           >
             <FiShoppingCart />
-
             <span className="absolute -top-2 -right-3 bg-red-500 text-xs px-1.5 rounded-full">
               {cart.length}
             </span>
@@ -111,7 +127,7 @@ function Product() {
 
           {/* LEFT */}
           <div className="bg-gray-200 rounded-2xl h-[480px] p-10 relative flex justify-center items-center">
-            <img src={images[current]} className="w-[380px]" />
+            <img src={images[current]} className="w-[380px]" alt="product" />
 
             <button onClick={prevSlide} className="absolute left-4 bg-gray-500 text-white w-10 h-10 rounded-full">❮</button>
             <button onClick={nextSlide} className="absolute right-4 bg-gray-500 text-white w-10 h-10 rounded-full">❯</button>
@@ -121,7 +137,7 @@ function Product() {
                 <div
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`w-2 h-2 rounded-full ${current === i ? "bg-black" : "bg-gray-400"}`}
+                  className={`w-2 h-2 rounded-full cursor-pointer ${current === i ? "bg-black" : "bg-gray-400"}`}
                 />
               ))}
             </div>
@@ -148,9 +164,10 @@ function Product() {
 
               {/* Buttons */}
               <div className="flex flex-col gap-3">
-                <button className="bg-black text-white py-3 rounded-full">
-                  Buy Now
-                </button>
+                <button onClick={() => navigate("/checkout")}
+                      className="w-full mt-6 bg-black text-white py-3 rounded-full font-semibold">
+                            Buy Now
+                                   </button>
 
                 <button
                   className="hover:bg-gray-200 border-2 py-3 rounded-full border-gray-300"
@@ -193,7 +210,8 @@ function Product() {
         </div>
       </div>
 
-     <section className="bg-white py-20 px-6">
+
+                   <section className="bg-white py-20 px-6">
   <div className="max-w-7xl mx-auto">
 
     {/* HEADING */}
@@ -289,8 +307,6 @@ function Product() {
     </div>
   </div>
 </section>
-
-      
 
     </div>
   );

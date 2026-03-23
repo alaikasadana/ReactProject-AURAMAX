@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { FiShoppingCart, FiUser } from "react-icons/fi";
+import { FiShoppingCart, FiUser, FiArrowLeft } from "react-icons/fi";
 
 function Cart() {
 
@@ -9,7 +9,6 @@ function Cart() {
 
   const [cart, setCart] = useState([]);
 
-  // 🔥 FETCH CART
   const getCart = async () => {
     const res = await axios.get("http://localhost:3000/cart");
     setCart(res.data);
@@ -19,10 +18,8 @@ function Cart() {
     getCart();
   }, []);
 
-  // 🔥 UPDATE QTY
   const updateQty = async (item, change) => {
     const newQty = (Number(item.qty) || 0) + change;
-
     if (newQty < 1) return;
 
     await axios.patch(`http://localhost:3000/cart/${item.id}`, {
@@ -32,13 +29,11 @@ function Cart() {
     getCart();
   };
 
-  // 🔥 DELETE
   const deleteItem = async (id) => {
     await axios.delete(`http://localhost:3000/cart/${id}`);
     getCart();
   };
 
-  // 🔥 TOTAL
   const total = cart.reduce(
     (acc, item) =>
       acc + (Number(item.price) || 0) * (Number(item.qty) || 0),
@@ -48,21 +43,41 @@ function Cart() {
   return (
     <div className="min-h-screen bg-gray-100 text-black">
 
-      {/* 🔥 NAVBAR */}
+      {/* 🔥 NAVBAR (UPDATED) */}
       <div className="bg-black text-white px-6 py-4 flex justify-between items-center shadow-md">
 
-        {/* LOGO */}
-        <h1
-          className="text-xl font-semibold cursor-pointer"
-          onClick={() => navigate("/")}
-        >
-          Auramax
-        </h1>
+        {/* LEFT */}
+        <div className="flex items-center gap-6">
 
-        {/* ICONS */}
+          {/* 🔙 Back */}
+          <button
+            onClick={() => navigate("/product")}
+            className="flex items-center gap-2 hover:underline"
+          >
+            <FiArrowLeft /> Back
+          </button>
+
+          {/* LOGO */}
+          <h1
+            className="text-xl font-semibold cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            Auramax
+          </h1>
+
+          {/* 🏠 HOME */}
+          <button
+            className="hover:underline"
+            onClick={() => navigate("/")}
+          >
+            Home
+          </button>
+
+        </div>
+
+        {/* RIGHT */}
         <div className="flex items-center gap-6 text-xl">
 
-          {/* CART */}
           <div
             className="relative cursor-pointer"
             onClick={() => navigate("/cart")}
@@ -73,7 +88,6 @@ function Cart() {
             </span>
           </div>
 
-          {/* ACCOUNT */}
           <div
             className="cursor-pointer"
             onClick={() => navigate("/account")}
@@ -99,7 +113,6 @@ function Cart() {
                 key={item.id}
                 className="flex items-center justify-between bg-white p-6 rounded-2xl shadow-sm border"
               >
-                {/* LEFT */}
                 <div className="flex items-center gap-6">
                   <img src={item.image} className="w-28" alt="" />
 
@@ -112,8 +125,7 @@ function Cart() {
                       ₹{Number(item.price) || 0}
                     </p>
 
-                    {/* QTY */}
-                    <div className="flex items-center mt-3 border border-gray-300 rounded-lg overflow-hidden w-fit">
+                    <div className="flex items-center mt-3 border rounded-lg overflow-hidden w-fit">
                       <button
                         onClick={() => updateQty(item, -1)}
                         className="px-3 py-1"
@@ -135,7 +147,6 @@ function Cart() {
                   </div>
                 </div>
 
-                {/* RIGHT */}
                 <div className="text-right">
                   <p className="text-xl font-bold">
                     ₹{(Number(item.price) || 0) * (Number(item.qty) || 0)}
@@ -151,16 +162,17 @@ function Cart() {
               </div>
             ))}
 
-            {/* TOTAL */}
             <div className="flex justify-between items-center mt-10 border-t pt-6">
               <h2 className="text-2xl font-semibold">Total</h2>
               <h2 className="text-3xl font-bold">₹{total}</h2>
             </div>
 
-            {/* BUY NOW */}
-            <button className="w-full mt-6 bg-black text-white py-3 rounded-full font-semibold hover:opacity-90">
-              Buy Now
-            </button>
+<button
+  onClick={() => navigate("/checkout")}
+  className="w-full mt-6 bg-black text-white py-3 rounded-full font-semibold"
+>
+  Buy Now
+</button>
 
           </div>
         )}

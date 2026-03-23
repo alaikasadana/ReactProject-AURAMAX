@@ -7,13 +7,82 @@
       "password": "alaika123"
     }
   ],
-  "cart": [
+  "cart": [],
+  "contact": [],
+  "orders": [
     {
-      "id": "95b3",
-      "name": "WH-1000XM6 Headphones",
-      "price": 49990,
-      "image": "/src/assets/img1.webp",
-      "qty": 1
+      "id": "ORD1774292203085",
+      "name": "Alaika sadana",
+      "phone": "08817491825",
+      "address": "NA",
+      "payment": "COD",
+      "items": [
+        {
+          "id": "ea72",
+          "name": "WH-1000XM6 Headphones",
+          "price": 49990,
+          "image": "/src/assets/img1.webp",
+          "qty": 1
+        }
+      ],
+      "total": 49990,
+      "date": "3/24/2026, 12:26:43 AM"
+    },
+    {
+      "id": "ORD1774292315454",
+      "name": "Alaika sadana",
+      "phone": "08817491825",
+      "address": "NA",
+      "payment": "COD",
+      "items": [],
+      "total": 0,
+      "date": "3/24/2026, 12:28:35 AM"
+    },
+    {
+      "id": "ORD1774292428997",
+      "name": "Alaika sadana",
+      "phone": "08817491825",
+      "address": "NA",
+      "payment": "COD",
+      "items": [],
+      "total": 0,
+      "date": "3/24/2026, 12:30:28 AM"
+    },
+    {
+      "id": "ORD1774292592868",
+      "name": "Alaika sadana",
+      "phone": "08817491825",
+      "address": "NA",
+      "payment": "Cash on Delivery",
+      "items": [
+        {
+          "id": "f652",
+          "name": "WH-1000XM6 Headphones",
+          "price": 49990,
+          "image": "/src/assets/img1.webp",
+          "qty": 1
+        }
+      ],
+      "total": 49990,
+      "date": "3/24/2026, 12:33:12 AM"
+    },
+    {
+      "id": "ORD1774292716742",
+      "name": "Alaika sadana",
+      "phone": "08817491825",
+      "address": "mp nagar",
+      "payment": "Cash on Delivery",
+      "items": [
+        {
+          "id": "6af2",
+          "name": "WH-1000XM6 Headphones",
+          "price": 49990,
+          "image": "/src/assets/img1.webp",
+          "qty": 2
+        }
+      ],
+      "total": 99980,
+      "date": "3/24/2026, 12:35:16 AM"
     }
   ]
 }
